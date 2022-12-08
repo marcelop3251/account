@@ -19,6 +19,7 @@ class SpringConfiguration {
         http.csrf().disable()
             .authorizeExchange()
             .pathMatchers(HttpMethod.GET, "/ping").permitAll()
+            .pathMatchers(HttpMethod.POST, "/sign-up").permitAll()
             .pathMatchers(HttpMethod.POST, "/login").permitAll().anyExchange().authenticated()
 
         return http.build()

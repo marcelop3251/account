@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface UserRepositorySpring : CoroutineCrudRepository<UserEntity, Int> {
 
+    suspend fun findByName(userName: Any): UserEntity
+
 }

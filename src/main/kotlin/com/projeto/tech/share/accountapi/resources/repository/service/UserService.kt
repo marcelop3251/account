@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails
 data class UserService(
     val userEntity: UserEntity
 ) : UserDetails {
+
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> = Collections.emptyList()
 
     override fun getPassword(): String  = userEntity.password

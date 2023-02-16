@@ -4,8 +4,10 @@ import com.projeto.tech.share.accountapi.resources.repository.spring.UserReposit
 import kotlinx.coroutines.reactor.mono
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
+@Service
 class UserDetailsService(
     private val userRepository: UserRepositorySpring
 ) : ReactiveUserDetailsService {

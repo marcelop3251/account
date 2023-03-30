@@ -51,7 +51,7 @@ class SpringConfiguration {
         val authenticationWebFilter = AuthenticationWebFilter(reactiveAuthenticationManager)
         //TODO como implementar o JWT
         authenticationWebFilter.setRequiresAuthenticationMatcher {
-            ServerWebExchangeMatchers.pathMatchers(HttpMethod.POST, "/loginss").matches(it)
+            ServerWebExchangeMatchers.pathMatchers(HttpMethod.POST, "/login").matches(it)
         }
         return authenticationWebFilter
     }

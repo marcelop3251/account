@@ -18,7 +18,7 @@ class JwtService {
     @Value("\${jwt.secret}")
     private lateinit var jwtSecret: String
 
-    fun generateToken(authentication: Authentication, roles: MutableList<GrantedAuthority>): String {
+    fun generateToken(authentication: Authentication, roles: MutableList<out GrantedAuthority>): String {
         val loggedUser = authentication.principal as UserService
         return Jwts.builder()
             .setSubject(loggedUser.userEntity.id)

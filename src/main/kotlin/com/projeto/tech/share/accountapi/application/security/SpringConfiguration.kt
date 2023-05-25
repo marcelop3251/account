@@ -1,5 +1,6 @@
 package com.projeto.tech.share.accountapi.application.security
 
+import com.projeto.tech.share.accountapi.application.security.authentication.JWTServerAuthenticationManager
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -47,12 +48,16 @@ class SpringConfiguration {
     }
 
     @Bean
-    fun authenticationWebFilter(reactiveAuthenticationManager: ReactiveAuthenticationManager): AuthenticationWebFilter {
+    fun authenticationWebFilter(
+        reactiveAuthenticationManager: ReactiveAuthenticationManager,
+        jwtServerAuthenticationManager: JWTServerAuthenticationManager
+    ): AuthenticationWebFilter {
         val authenticationWebFilter = AuthenticationWebFilter(reactiveAuthenticationManager)
-        //TODO como implementar o JWT
+
         authenticationWebFilter.setRequiresAuthenticationMatcher {
             ServerWebExchangeMatchers.pathMatchers(HttpMethod.POST, "/login").matches(it)
         }
+        authenticationWebFilter.setAuthenticationSuccessHandler(jwtServerAuthenticationManager)
         return authenticationWebFilter
     }
 }
